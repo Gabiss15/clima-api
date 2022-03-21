@@ -8,6 +8,8 @@ let sensation = document.querySelectorAll('p.sensation')
 let elementos = document.querySelectorAll("img.elemento")
 var temperatura = document.querySelector('div.celsius')
 let barra = document.querySelectorAll('div.barra')
+var graficMax = document.querySelectorAll('div.max-temp')
+var graficMin = document.querySelectorAll('div.min-temp')
 let lat
 let lon
 let cidadePesquisada = document.querySelector('p#cidade')
@@ -90,6 +92,35 @@ function request(){
                                 tempMin[j].innerHTML = `${parseInt(temperaturaMin)}º`
                             }
 
+                            for (let l = 0; l < 7; l++){
+                                let temperaturaMax = data['daily'][l]['temp']['max']
+
+                                if (temperaturaMax > 0 && temperaturaMax <=10){
+                                    graficMax[l].style.width = '10px'
+                                } else if (temperaturaMax < 10 && temperaturaMax <= 20){
+                                    graficMax[l].style.width = '20px'
+                                } else if (temperaturaMax > 20 && temperaturaMax <= 30){
+                                    graficMax[l].style.width = '30px'
+                                } else{
+                                    graficMax[l].style.width = '40px'
+                                }
+
+                            }
+
+                            for (let f = 0; f < 7; f++){
+                                let temperaturaMin = data['daily'][f]['temp']['min']
+
+                                if (temperaturaMin > 0 && temperaturaMin <=10){
+                                    graficMin[f].style.width = '10px'
+                                } else if (temperaturaMin < 10 && temperaturaMin <= 20){
+                                    graficMin[f].style.width = '20px'
+                                } else if (temperaturaMin > 20 && temperaturaMin <= 30){
+                                    graficMin[f].style.width = '30px'
+                                } else{
+                                    graficMin[f].style.width = '40px'
+                                }
+
+                            }
                             for (let k = 0; k < 7; k++){
                                 let clima = data['daily'][k]['weather']['0']
 
