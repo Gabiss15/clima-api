@@ -7,6 +7,7 @@ let DayOfWeek = document.querySelector("p#DayOfWeek")
 let sensation = document.querySelectorAll('p.sensation')
 let elementos = document.querySelectorAll("img.elemento")
 var temperatura = document.querySelector('div.celsius')
+let barra = document.querySelectorAll('div.barra')
 let lat
 let lon
 let cidadePesquisada = document.querySelector('p#cidade')
@@ -60,6 +61,20 @@ function request(){
                             let temperaturaNormal = data.current.temp
                             console.log(temperaturaNormal)
                             temperatura.innerHTML = `${parseInt(temperaturaNormal)}º`
+
+                            for (let g = 0; g < 7; g++){
+                                let grafic = data['daily'][g]['humidity']
+
+                                if (grafic > 0 && grafic <= 50){
+                                    barra[g].style.height = '200px'
+                                } else if (grafic > 50 && grafic <= 85){
+                                    barra[g].style.height = '160px'
+                                    barra[g].style.marginTop = '30px' 
+                                } else {
+                                    barra[g].style.height = '140px'
+                                    barra[g].style.marginTop= '30px'
+                                }
+                            }
                             
                             for (let h = 0; h < 7; h++ ){
                                 let umidade = data['daily'][h]['humidity']
@@ -115,3 +130,19 @@ function request(){
         })
     
 }
+
+/*
+                            for (let g = 0; g < 7; g++){
+                                let grafic = data['daily'][g]['humidity']
+
+                                if (grafic > 0 && grafic <= 50){
+                                    barra[g].style.height = '200px'
+                                } else if (grafic > 50 && grafic <= 85){
+                                    barra[g].style.height = '180px'
+                                    barra[g].style.marginTop = '30px' 
+                                } else {
+                                    barra[g].style.height = '160px'
+                                    barra[g].style.marginTop = '30px'
+                                }
+                            }
+*/

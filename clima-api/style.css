@@ -197,12 +197,12 @@ h4{
 
 .container-linhas{
     display: grid;
-    grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr;
+    grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
-    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6"
-    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6"
-    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6";
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7";
     padding-top: 1px;
 }
 
