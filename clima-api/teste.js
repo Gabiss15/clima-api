@@ -1,42 +1,45 @@
 const key = "1efaeca6f9da0c5c936dc24732e21780"
 const input = document.querySelector('input#pesquisa')
-let precipitacao = document.querySelector('h4#humidty')
-let tempMax = document.getElementsByClassName('max-temperatura')
-let tempMin = document.getElementsByClassName('min-temperatura')
+let precipitacao = document.querySelectorAll('h4#humidty')
+let tempMax = document.querySelectorAll('h4.max-temperatura')
+let tempMin = document.querySelectorAll('h4.min-temperatura')
 let DayOfWeek = document.querySelector("p#DayOfWeek")
-let sensation = document.querySelector('p#sensation')
+let sensation = document.querySelectorAll('p.sensation')
+let elementos = document.querySelectorAll("img.elemento")
+var temperatura = document.querySelector('div.celsius')
 let lat
 let lon
 let cidadePesquisada = document.querySelector('p#cidade')
 
+var dateOfWeek = ["Domingo","Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado" ]
+var week = new Date();
+var number1 = dateOfWeek[week.getDay()]
+
+var day = new Date()
+var dia = day.getDate()
+
+var month = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+var mes = new Date();
+var number2 = month[mes.getMonth()]
+
+DayOfWeek.innerHTML = `${number1}, ${dia} de ${number2}`
+
 function request(){
     let city = input.value
-
-    var dateOfWeek = ["Domingo","Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado" ]
-    var week = new Date();
-    var number1 = dateOfWeek[week.getDay()]
-
-    var day = new Date()
-    var dia = day.getDate()
-
-    var month = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
-    var mes = new Date();
-    var number2 = month[mes.getMonth()]
 
     let time = new Date()
     let hora = time.getHours()
 
-    let moment = ''
+    let moment 
 
-    if (hora >= 0 && hora<=11){
-        moment = 'morn'
-    } else if (hora>= 12 && hora <= 18){
+    if (hora>= 12 && hora <= 18){
         moment = 'day'
+    } else if (hora >= 0 && hora<=11){
+        moment = 'night'
     } else if (hora > 18 && hora <= 23){
         moment = 'eve'
     }
 
-    DayOfWeek.innerHTML = `${number1}, ${dia} de ${number2}`
 
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${key}`)
 
@@ -53,43 +56,52 @@ function request(){
                         response.json()
 
                         .then (data => {
-                            data.daily.forEach((valor) => {
-                                const temperaturaMax = valor.temp.max
-                                const temperaturaMin = valor.temp.min
-    
-                                tempMax.innerHTML = `${temperaturaMax}º`
-                                tempMin.innerHTML = `${temperaturaMin}º`
 
-                                //console.log(`Temperatura  Máxima: ${temperaturaMax}`)
-                                //console.log(`Temperatura Mínima: ${temperaturaMin}`)
-                            })
-                            /*data.daily.forEach((elemento) => {
-
-                                let umidade = elemento.humidity
-                                //console.log("umidade:", umidade)
-                                precipitacao.innerHTML = umidade + "%"
-                                
-                            })*/
-
-                            //Duas tentativas diferentes de pegar a umidade
+                            let temperaturaNormal = data.current.temp
+                            console.log(temperaturaNormal)
+                            temperatura.innerHTML = `${parseInt(temperaturaNormal)}º`
                             
                             for (let h = 0; h < 7; h++ ){
                                 let umidade = data['daily'][h]['humidity']
-                                precipitacao.innerHTML[h] = umidade
+                                precipitacao[h].innerHTML = `${umidade}%`
                                 console.log(umidade)
                             }
-                            for (let i = 0; i < 7 ; i++){
-                                let sensacao = data['daily'][i]
-                                console.log(sensacao['feels_like'])
 
-                                if (moment == 'day'){
-                                    sensation.innerHTML = `Sensação térmica: ${sensacao['feels_like']['day']}`
-                                } else if(moment == 'morn'){
-                                    sensation.innerHTML = `Sensação térmica: ${sensacao['feels_like']['morn']}`
-                                } else if (moment == 'eve'){
-                                    sensation.innerHTML = `Sensação térmica: ${sensacao['feels_like']['eve']}`
+                            for (let j = 0; j < 7; j++){
+                                let temperaturaMax = data['daily'][j]['temp']['max']
+                                let temperaturaMin = data['daily'][j]['temp']['min']
+
+                                tempMax[j].innerHTML = `${parseInt(temperaturaMax)}º`
+                                tempMin[j].innerHTML = `${parseInt(temperaturaMin)}º`
+                            }
+
+                            for (let k = 0; k < 7; k++){
+                                let clima = data['daily'][k]['weather']['0']
+
+                                if (clima['main'] == 'Rain'){
+                                    elementos[k].src = 'img/chuva.png';
+                                } else if(clima['main'] == 'Clouds'){
+                                    elementos[k].src = 'img/parcialnu.jpg'
+                                } else if (clima['main'] == 'Thunderstorm'){
+                                    elementos[k].src = 'img/chuva-forte.jpg'
+                                } else {
+                                    elementos[k].src = 'img/parcialnu.jpg'
                                 }
                             }
+
+                            for (let i = 0; i < 7 ; i++){
+                                let sensacao = data['daily'][i]['feels_like']
+                                console.log(sensacao)
+
+                                if (moment == 'day'){
+                                    sensation[i].innerHTML = `Sensação térmica: ${parseInt(sensacao['day'])}`
+                                } else if(moment == 'night'){
+                                    sensation[i].innerHTML = `Sensação térmica: ${parseInt(sensacao['night'])}`
+                                } else {
+                                    sensation[i].innerHTML = `Sensação térmica: ${parseInt(sensacao['eve'])}`
+                                }
+                            }
+
                         })
                     })
                     .catch (error =>{

@@ -50,13 +50,12 @@ img{
 
 section{
     display: grid;
-    grid-template-rows: 0.3fr 0.1fr 0.5fr 1fr 0.5fr 5fr;
+    grid-template-rows: 0.3fr 0.1fr 0.5fr 1fr 2fr;
     grid-template-areas: 
     "container-header"
     "container-tempo"
     "container-temperatura"
     "container-descricao"
-    "container-title"
     "container-grafico";
     grid-gap: 40px;
     background-color: #110e3c;
@@ -196,19 +195,36 @@ h4{
     padding-bottom: 20px;
 }
 
-.container-grafico{
+.container-linhas{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
-    "legenda-1 #linha linha linha linha linha linha"
-    "legenda-2 linha linha linha linha linha linha"
-    "legenda-3 linha linha linha linha linha linha"
-    "legenda-4 lengenda-4 lengenda-4 lengenda-4 lengenda-4 lengenda-4 lengenda-4";
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6";
+    padding-top: 1px;
 }
 
-.linha{
-    height: 100px;
+.legenda-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.barra{
+    width: 20px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: rgb(68, 68, 189);
+}
+
+#barra-4{
+    display: flex;
+    justify-self: flex-end;
+    background-color: yellow;
+    height: 150px;
+    margin-top: 30px;
 }
 
 .grafico{

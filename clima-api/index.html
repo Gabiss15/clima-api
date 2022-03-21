@@ -55,7 +55,7 @@
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-2">
                     <h5 class="dia">Segunda</h5>
@@ -63,13 +63,13 @@
                         <img src="img/cort.jpg" id="umidade" alt="umidade">
                         <h4 id="humidty">54%</h4>
                     </div>
-                    <img src="img/chuva.png" class="elemento" alt="parcialmente nublamento">
+                    <img src="img/chuva.png" class="elemento" alt="chuva">
                     <h4 class="min-temperatura">16º</h4>
                     <div class="grafico">
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-3">
                     <h5 class="dia">Terça</h5>
@@ -83,7 +83,7 @@
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-4">
                     <h5 class="dia">Quarta</h5>
@@ -97,7 +97,7 @@
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-5">
                     <h5 class="dia">Quinta</h5>
@@ -105,13 +105,13 @@
                         <img src="img/cort.jpg" id="umidade" alt="umidade">
                         <h4 id="humidty">54%</h4>
                     </div>
-                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublamento">
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublado">
                     <h4 class="min-temperatura">20º</h4>
                     <div class="grafico">
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-6">
                     <h5 class="dia">Sexta</h5>
@@ -119,13 +119,13 @@
                         <img src="img/cort.jpg" id="umidade" alt="umidade">
                         <h4 id="humidty">54%</h4>
                     </div>
-                    <img src="img/chuva-forte.jpg" class="elemento" alt="parcialmente nublamento">
+                    <img src="img/chuva-forte.jpg" class="elemento" alt="chuva forte">
                     <h4 class="min-temperatura">20º</h4>
                     <div class="grafico">
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
                 <div class="box-7">
                     <h5 class="dia">Sábado</h5>
@@ -139,7 +139,7 @@
                         <div class="max-temp"></div>
                         <div class="min-temp"></div>
                     </div>
-                    <h4 max-temperatura>35º</h4>
+                    <h4 class='max-temperatura'>35º</h4>
                 </div>
             </div>
         </main>
@@ -162,7 +162,7 @@
                 <img src="img/chuva-com-vento.png" alt="Chuva com vento">
                 <div class="descricao">
                     <h3>Hoje</h3>
-                    <p id="DayOfWeek" onload="description()"></p>
+                    <p id="DayOfWeek"></p>
                 </div>
             </div>
 
@@ -174,28 +174,49 @@
                 <div class="container-descricao">
                     <p id="cidade"></p><br>
                     <div class="txt">
-                        <p id="sensation"> Sensação de 26 </p>
+                        <p class="sensation"> Sensação de 26 </p>
                         <p>•</p>
                         <p> Pôr do sol 17:15</p>
                     </div>
                 </div>
             </div>
 
-            <div class="container-title">
-                <h4>Chance de chuva</h4>
-            </div>
-
             <div class="container-grafico">
-                <div class="legenda-1">
-                    <h4>Sol</h4>
+                <div class="container-title">
+                    <h4 class="title">Chance de chuva</h4><br>
                 </div>
-                <div class="legenda-2">
-                    <h4>Chuva</h4>
-                </div>
-                <div class="legenda-3">
-                    <h4>Tempestade</h4>
-                </div>
-                <div class="linha">
+                <div class="container-linhas">
+                    <div class="legenda-1">
+                        <div class="sol">
+                            <h4>Sol</h4>
+                        </div>
+        
+                        <div class="chuva">
+                            <h4>Chuva</h4>
+                        </div>
+                        <div class="Tempestade">
+                            <h4>Tempestade</h4>
+                        </div>
+                    </div>
+
+                    <div class="linha-1">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-2">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-3">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-4">
+                        <div class="barra" id="barra-4"></div>
+                    </div>
+                    <div class="linha-5">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-6">
+                        <div class="barra"></div>
+                    </div>
                 </div>
             </div>
         </section>
