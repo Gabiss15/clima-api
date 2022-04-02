@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="style.css" media="only screen">
+
+    <link rel="icon" href="img/icone-de-clima.png">
+    <title>Weather System</title>
+</head>
+<body>
+        <main class="main">
+            
+            <header>
+                <div class="item-1">
+                    <div class="image">
+                        <img id="img" src="img/lupa.png" alt="lupa" onclick="request()">
+                    </div>
+                    <input type="search" id="pesquisa" placeholder="Pesquisar cidade">
+                </div>
+                <div class="item-2">
+                    <p id="title">Previsão do <b>Tempo</b></p></hr>
+                </div>
+                <div class="vizual">
+                    <h5>Últimas visualizações</h5>
+                </div>
+            </header>
+            
+            <div class="cidades-pesquisadas">
+                <figcaption>
+                    <img src="img/praia-gf5deb4ed8_640.jpg" alt="Natal" class = "imgCidades">
+                    <h5 id="cidade-legenda"><b> Natal, RN</b></h5>
+                </figcaption>
+                <figcaption>
+                    <img  src="img/rio-de-janeiro-g45383594d_640.jpg" alt="Rio de janeiro" class = "imgCidades">
+                    <h5><b> Rio de Janeiro, RJ</b></h5>
+                </figcaption>
+                <figcaption>
+                    <img src="img/sea-ge79e433f9_640.jpg" alt="Fortaleza" class = "imgCidades">
+                    <h5><b> Fortaleza, CS</b></h5>
+                </figcaption>
+            </div>
+            
+            <h4>Semana</h4>
+
+            <div class="container-semanas">
+                <div class="box-1">
+                    <h5 class="dia">Domingo</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublamento">
+                    <h4 class="min-temperatura">20º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-2">
+                    <h5 class="dia">Segunda</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/chuva.png" class="elemento" alt="chuva">
+                    <h4 class="min-temperatura">16º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-3">
+                    <h5 class="dia">Terça</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublamento">
+                    <h4 class="min-temperatura">25º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-4">
+                    <h5 class="dia">Quarta</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublamento">
+                    <h4 class="min-temperatura">18º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-5">
+                    <h5 class="dia">Quinta</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublado">
+                    <h4 class="min-temperatura">20º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-6">
+                    <h5 class="dia">Sexta</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/chuva-forte.jpg" class="elemento" alt="chuva forte">
+                    <h4 class="min-temperatura">20º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+                <div class="box-7">
+                    <h5 class="dia">Sábado</h5>
+                    <div class="percentual">
+                        <img src="img/cort.jpg" id="umidade" alt="umidade">
+                        <h4 id="humidty">54%</h4>
+                    </div>
+                    <img src="img/parcialnu.jpg" class="elemento" alt="parcialmente nublamento">
+                    <h4 class="min-temperatura">20º</h4>
+                    <div class="grafico">
+                        <div class="max-temp"></div>
+                        <div class="min-temp"></div>
+                    </div>
+                    <h4 class='max-temperatura'>35º</h4>
+                </div>
+            </div>
+        </main>
+        <section class="section">
+            <header>
+                <div class="container-header">
+                    <div class="one">
+                        <h4>Notificações</h4>
+                    </div>
+                    <div class="two">
+                        <h4>Linguagens</h4>
+                    </div>
+                    <div class="perfil">
+                        <img src="img/mulher-3x4.jpg" alt="Imagem do usuário">
+                    </div>
+                </div><br>
+            </header>
+
+            <div class="container-tempo">
+                <img src="img/chuva-com-vento.png" alt="Chuva com vento">
+                <div class="descricao">
+                    <h3>Hoje</h3>
+                    <p id="DayOfWeek"></p>
+                </div>
+            </div>
+
+            <div class="container-temperatura">
+                <div class="celsius">
+                    <span> 28</span>
+                    <span>º</span>
+                </div>
+                <div class="container-descricao">
+                    <p id="cidade"></p><br>
+                    <div class="txt">
+                        <p class="sensation"> Sensação de 26 </p>
+                        <p class="sunset"> Pôr do sol 17:15</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-grafico">
+                <div class="container-title">
+                    <h4 class="title">Chance de chuva</h4><br>
+                </div>
+                <div class="container-linhas">
+                    <div class="legenda-1">
+                        <div class="sol">
+                            <h4>Sol</h4>
+                        </div>
+        
+                        <div class="chuva">
+                            <h4>Chuva</h4>
+                        </div>
+                        <div class="Tempestade">
+                            <h4>Tempestade</h4>
+                        </div>
+                    </div>
+
+                    <div class="linha-1">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-2">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-3">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-4">
+                        <div class="barra" id="barra-4"></div>
+                    </div>
+                    <div class="linha-5">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-6">
+                        <div class="barra"></div>
+                    </div>
+                    <div class="linha-7">
+                        <div class="barra"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="main.js"></script>
+</body>
+</html>
+
+<!-- Gabiss15 -->

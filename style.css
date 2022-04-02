@@ -1,0 +1,282 @@
+@font-face {
+    src: url('Lato-Light.ttf');
+    font-family: 'Lato';    
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 400px){
+    body{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "main"
+        "section";
+    }
+    main{
+        width: 100%;
+        background-color: #f3fbff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .box-1, .box-2, .box-3, .box-4, .box-5, .box-6, .box-7{
+        width: 50%;
+    }
+    figcaption > img{
+        width: 100px;
+        height: 100px;
+    }
+    section{
+        /*width: 70em;*/
+        display: flex;
+        background-color: #110e3c;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+
+}
+main{
+    background-color:#f3fbff;
+    font-family: 'Lato';
+    width: 70%;
+}
+
+img{
+    display: flex;
+    width: 40px;
+    height: 40px;
+}
+.item-1, .item-2{
+    display: flex;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+#title{
+    display: block;
+    font-size: 35px;
+}
+
+.vizual{
+    display: block;
+    margin-left: 1em;
+    padding-bottom: 20px;
+}
+#pesquisa{
+    border: transparent;
+    background-color: #fff;
+    width: auto;
+    height: 40px;
+    padding: 10px;
+}
+
+section{
+    display: grid;
+    grid-template-rows: 0.3fr 0.1fr 0.5fr 1fr 2fr;
+    grid-template-areas: 
+    "container-header"
+    "container-tempo"
+    "container-temperatura"
+    "container-descricao"
+    "container-grafico";
+    grid-gap: 40px;
+    background-color: #110e3c;
+    font-family: 'Lato';
+    color: #fff;
+    width: 30%;
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-left: 0.5em;
+}
+
+figcaption > img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-left: 1em;
+    display: flex;
+}
+figcaption{
+    margin-left: 1em;
+    padding-bottom: 19px;
+}
+
+figcaption > img:hover{
+    width: 100px;
+    height: 100px;
+}
+
+h4{
+    margin-left: 1em;
+    font-weight: bold;
+}
+
+.container-semanas{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "box-1"
+    "box-2"
+    "box-3"
+    "box-4"
+    "box-5"
+    "box-6"
+    "box-7";
+}
+
+.box-1, .box-2, .box-3, .box-4, .box-5, .box-6, .box-7{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "dia percentual elemento min-temperatura grafico max-temperatura";
+    grid-gap: 30px;
+    background-color: #fff;
+    width: 80%;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 1em;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-semanas > img{
+    width: 20px;
+    height: 20px;
+}
+
+.percentual{
+    display: flex;
+}
+
+#umidade{
+    width: 20px;
+    height: 20px;
+}
+
+.elemento{
+    width: 40px;
+    margin-left: 15%;
+}
+
+.cidades-pesquisadas{
+    display: flex;
+    flex-direction: row;
+}
+
+.one, .two{
+    display: flex;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.perfil > img{
+    display: flex;
+    padding-top: 1em;
+    padding-left: 3em;
+}
+
+.container-header, .container-tempo{
+    display: flex;
+    justify-content: center;
+}
+
+.container-descricao, .container-temperatura{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-tempo > img{
+    width: 50px;
+    height: 50px;
+    padding-right: 10px;
+}
+
+.celsius{
+    display: flex;
+    font-size: 50px;
+}
+
+.celsius > p{
+    display: block;
+    font-size: 10px;
+}
+
+.txt{
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.container-linhas{
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr 0.3fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7"
+    "legenda-1 linha-1 linha-2 linha-3 linha-4 linha-5 linha-6 linha-7";
+    padding-top: 1px;
+    align-items: flex-end;
+}
+
+.legenda-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.barra{
+    width: 20px;
+    height: 180px;
+    border-radius: 10px;
+    justify-content: flex-end;
+    background-color: rgb(68, 68, 189);
+}
+
+#barra-4{
+    display: flex;
+    background-color: yellow;
+    height: 150px;
+}
+
+.grafico{
+    display: flex;
+}
+
+.max-temp{
+    width: 40px;
+    height: 5px;
+    background-color: rgb(196, 195, 195);
+}
+
+.min-temp{
+    width: 40px;
+    height: 5px;
+    background-color: red;
+}
