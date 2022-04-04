@@ -29,14 +29,6 @@ function request(){
 
     let moment 
 
-    if (hora>= 12 && hora <= 18){
-        moment = 'day'
-    } else if (hora >= 0 && hora<=11){
-        moment = 'night'
-    } else if (hora > 18 && hora <= 23){
-        moment = 'eve'
-    }
-
     DayOfWeek.innerHTML = `${number1}, ${dia} de ${number2}`
 
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${key}`)

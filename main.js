@@ -13,6 +13,8 @@ var temperatura = document.querySelector('div.celsius')
 let barra = document.querySelectorAll('div.barra')
 var graficMax = document.querySelectorAll('div.max-temp')
 var graficMin = document.querySelectorAll('div.min-temp')
+var indexUV = document.querySelector('section.index-uv')
+var scaleUV = document.querySelector('p#scale-uv')
 let lat
 let lon
 let cidadePesquisada = document.querySelector('p#cidade')
@@ -38,15 +40,6 @@ function request(){
 
     let moment 
 
-    if (hora>= 12 && hora <= 18){
-        moment = 'day'
-    } else if (hora >= 0 && hora<=11){
-        moment = 'night'
-    } else if (hora > 18 && hora <= 23){
-        moment = 'eve'
-    }
-
-
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${key}`)
 
         .then(response => {
@@ -59,7 +52,8 @@ function request(){
                 let dataGeographic = data;
 
                 let state = data[0]['state']
-                cityLegend.innerHTML = `${city}, ${state}`
+                let cityUpper = city[0].toUpperCase() + city.substr(1)
+                cityLegend.innerHTML = `${cityUpper}, ${state}`
 
 
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&exclude={part}&appid=${key}`)
@@ -143,13 +137,30 @@ function request(){
 
                             let sensacao = data.current.feels_like
                             console.log('Sensação' + sensacao)
-                            sensation.innerHTML = `Sensação térmica: ${parseInt(sensacao)}`
+                            sensation.innerHTML = `Sensação térmica: ${parseInt(sensacao)}º`
 
                             let porDoSol = data.current.sunset 
                             let sunsetConvert = new Date (porDoSol)
                             let sunsetDisplay = sunsetConvert.toLocaleString()
                             console.log(sunsetConvert.toLocaleString())
                             sunset.innerHTML = `Pôr do Sol: ${sunsetDisplay}`
+
+                            let percentUV = data.current.uvi
+                            console.log('uv', percentUV)
+                            indexUV.style.height = '150px'
+                            scaleUV.innerHTML = `${percentUV}%`
+
+                            if(percentUV>=3 && percentUV <=5.9 ){
+                                indexUV.style.backgroundColor = 'yellow'
+                            } else if (percentUV > 5.9 && percentUV <= 7.9 ){
+                                indexUV.style.backgroundColor = 'orange'
+                            } else if (percentUV > 7.9 && percentUV <= 10.9){
+                                indexUV.style.backgroundColor = 'red'
+                            } else if (percentUV > 11){
+                                indexUV.style.backgroundColor = 'rgb(50, 18, 61)'
+                            } else {
+                                indexUV.style.backgroundColor = 'gray'
+                            }
 
                             let cidadaPesquisa = `${dataGeographic[0]["name"]} ${dataGeographic[0]["state"]} ${dataGeographic[0]["country"]}`
 
