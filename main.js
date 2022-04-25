@@ -11,8 +11,8 @@ let sunset = document.querySelector('p.sunset')
 let elementos = document.querySelectorAll("img.elemento")
 var temperatura = document.querySelector('div.celsius')
 let barra = document.querySelectorAll('div.barra')
-var graficMax = document.querySelectorAll('div.max-temp')
-var graficMin = document.querySelectorAll('div.min-temp')
+var graficMax = document.getElementsByClassName('max-temp')
+var graficMin = document.getElementsByClassName('min-temp')
 var indexUV = document.querySelector('section.index-uv')
 var scaleUV = document.querySelector('p#scale-uv')
 let lat
@@ -55,7 +55,6 @@ function request(){
                 let cityUpper = city[0].toUpperCase() + city.substr(1)
                 cityLegend.innerHTML = `${cityUpper}, ${state}`
 
-
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&exclude={part}&appid=${key}`)
                     .then(response =>{
                         response.json()
@@ -72,9 +71,9 @@ function request(){
                                 if (grafic > 0 && grafic <= 50){
                                     barra[g].style.height = '200px'
                                 } else if (grafic > 50 && grafic <= 85){
-                                    barra[g].style.height = '160px' 
+                                    barra[g].style.height = '140px' 
                                 } else {
-                                    barra[g].style.height = '140px'
+                                    barra[g].style.height = '100px'
                                 }
                             }
                             
@@ -94,33 +93,18 @@ function request(){
 
                             for (let l = 0; l < 7; l++){
                                 let temperaturaMax = data['daily'][l]['temp']['max']
+                                let p1 = parseInt(temperaturaMax) 
+                                console.log("Temp Máx.",p1)
 
-                                if (temperaturaMax > 0 && temperaturaMax <=10){
-                                    graficMax[l].style.width = '10px'
-                                } else if (temperaturaMax < 10 && temperaturaMax <= 20){
-                                    graficMax[l].style.width = '20px'
-                                } else if (temperaturaMax > 20 && temperaturaMax <= 30){
-                                    graficMax[l].style.width = '30px'
-                                } else{
-                                    graficMax[l].style.width = '40px'
-                                }
+                                graficMax[l].style.width = `${p1}px`
 
+                                let temperaturaMin = data['daily'][l]['temp']['min']
+                                let p1Min = parseInt(temperaturaMin) 
+                                console.log("Temp Mín", p1Min)
+
+                                graficMin[l].style.width = `${p1Min}px`
                             }
 
-                            for (let f = 0; f < 7; f++){
-                                let temperaturaMin = data['daily'][f]['temp']['min']
-
-                                if (temperaturaMin > 0 && temperaturaMin <=10){
-                                    graficMin[f].style.width = '10px'
-                                } else if (temperaturaMin < 10 && temperaturaMin <= 20){
-                                    graficMin[f].style.width = '20px'
-                                } else if (temperaturaMin > 20 && temperaturaMin <= 30){
-                                    graficMin[f].style.width = '30px'
-                                } else{
-                                    graficMin[f].style.width = '40px'
-                                }
-
-                            }
                             for (let k = 0; k < 7; k++){
                                 let clima = data['daily'][k]['weather']['0']
 
@@ -140,10 +124,14 @@ function request(){
                             sensation.innerHTML = `Sensação térmica: ${parseInt(sensacao)}º`
 
                             let porDoSol = data.current.sunset 
-                            let sunsetConvert = new Date (porDoSol)
-                            let sunsetDisplay = sunsetConvert.toLocaleString()
-                            console.log(sunsetConvert.toLocaleString())
-                            sunset.innerHTML = `Pôr do Sol: ${sunsetDisplay}`
+                            let sunsetConvert = new Date (0)
+
+                            sunsetConvert.setUTCSeconds(porDoSol)
+                            var ps = sunsetConvert.toLocaleTimeString()
+
+                            console.log(ps)
+
+                            sunset.innerHTML = `Pôr do Sol: ${ps}`
 
                             let percentUV = data.current.uvi
                             console.log('uv', percentUV)
@@ -169,15 +157,20 @@ function request(){
                                 response.json()
                                 .then(data => {
                                     console.log(data)
-                                    const imgCidades = document.querySelectorAll("img.imgCidades")
+                                    
+                                    var imgCidades = document.querySelectorAll("img.imgCidades")
                                     console.log(imgCidades)
+
+                                    for (let i = 0; i<=2; i++){
+                                        let id = data["photos"]["photo"][0]["id"]
+                                        let server = data["photos"]["photo"][0]["server"]
+                                        let secret = data["photos"]["photo"][0]["secret"]
+                                        
+                                        let src = `https://live.staticflickr.com/${server}/${id}_${secret}_n.jpg`//url reveladora
+                                        imgCidades[0].src = src
+                                    }
+
                                     
-                                    let id = data["photos"]["photo"][0]["id"]
-                                    let server = data["photos"]["photo"][0]["server"]
-                                    let secret = data["photos"]["photo"][0]["secret"]
-                                    
-                                    let src = `https://live.staticflickr.com/${server}/${id}_${secret}_n.jpg`//url reveladora
-                                    imgCidades[0].src = src
                                 })
                                 .catch(e => {
                                     console.log(e)
@@ -200,18 +193,3 @@ function request(){
         })
     
 }
-
-/*
-                            for (let g = 0; g < 7; g++){
-                                let grafic = data['daily'][g]['humidity']
-                                if (grafic > 0 && grafic <= 50){
-                                    barra[g].style.height = '200px'
-                                } else if (grafic > 50 && grafic <= 85){
-                                    barra[g].style.height = '180px'
-                                    barra[g].style.marginTop = '30px' 
-                                } else {
-                                    barra[g].style.height = '160px'
-                                    barra[g].style.marginTop = '30px'
-                                }
-                            }
-*/
